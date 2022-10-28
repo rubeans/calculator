@@ -1,0 +1,59 @@
+/* GOOGLE FONTS */
+@import url('https://fonts.googleapis.com/css2?family=Rubik&display=swap');
+
+/* GLOBAL SETTINGS */
+* {
+    box-sizing : border-box;
+    font-family: 'Rubik', sans-serif;
+    font-weight: normal;
+}
+
+body {
+    padding         : 0;
+    margin          : 0;
+    background-color: #5c5c5c;
+}
+
+.calculator {
+    display              : grid;
+    justify-content      : center;
+    align-content        : center;
+    min-height           : 100vh;
+    grid-template-columns: repeat(4, 100px);
+    grid-template-rows   : minmax(120px, auto) repeat(5, 100px);
+}
+
+.calculator>button {
+    cursor          : pointer;
+    font-size       : 2rem;
+    border          : 1px solid #e0e0e0;
+    outline         : none;
+    background-color: #ebebeb;
+    color           : #414142;
+}
+
+.calculator>button:hover {
+    background-color: #414142;
+    color           : #ebebeb;
+    border          : 1px solid #414142;
+}
+
+.span-two {
+    grid-column: span 2;
+}
+
+.round-down-left {
+    border-radius: 0 0 0 3px;
+}
+
+.round-down-right {
+    border-radius: 0 0 3px 0;
+}
+
+.output {
+    z-index         : 1;
+    grid-column     : 1 / -1;
+    background-color: #414142;
+    color           : #ebebeb;
+    border-radius   : 3px 3px 0 0;
+}
