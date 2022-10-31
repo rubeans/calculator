@@ -38,13 +38,17 @@ body {
     border          : 1px solid #414142;
 }
 
-.clearBtn-color:hover{
-    background-color: #ec2a2a !important;
-    border: 1px solid #ec2a2a !important;
+.clearBtn:hover{
+    background-color: #b82f2f !important;
+    border: 1px solid #b82f2f !important;
 }
-.equalsBtn-color:hover{
-    background-color: #1fc027 !important;
-    border: 1px solid #1fc027 !important;
+.deleteBtn:hover{
+    background-color: #d1921d !important;
+    border: 1px solid #d1921d !important;
+}
+.equalsBtn:hover{
+    background-color: #28832d !important;
+    border: 1px solid #28832d !important;
 }
 
 .output {
