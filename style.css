@@ -1,16 +1,19 @@
 /* GOOGLE FONTS */
 @import url('https://fonts.googleapis.com/css2?family=Rubik&display=swap');
+
 /* GLOBAL SETTINGS */
 * {
     box-sizing : border-box;
     font-family: 'Rubik', sans-serif;
     font-weight: normal;
 }
+
 body {
     padding         : 0;
     margin          : 0;
     background-color: #5c5c5c;
 }
+
 /* MAIN CONTAINER */
 .calculator {
     display              : grid;
@@ -20,28 +23,27 @@ body {
     grid-template-columns: repeat(4, 100px);
     grid-template-rows   : minmax(120px, auto) repeat(5, 100px);
 }
+
 /* OUTPUT */
 .output {
     z-index         : 1;
     grid-column     : 1 / -1;
     background-color: #414142;
     border-radius   : 3px 3px 0 0;
-    display: flex;
-    justify-content: space-around;
-    align-items: flex-end;
-    flex-direction: column;
-    padding: 10px;
-    word-wrap: break-word;
-    word-break: break-all;
+    display         : flex;
+    justify-content : space-around;
+    align-items     : flex-end;
+    flex-direction  : column;
+    padding         : 10px;
+    word-wrap       : break-word;
+    word-break      : break-all;
 }
-.output .prev-operand{
-    color: #b1b1b1;
-    font-size: 1.5rem;
-}
-.cur-operand{
-    color: #e0e0e0;
+
+.output .output-text {
+    color    : #ebebeb;
     font-size: 2.5rem;
 }
+
 /* BUTTONS */
 .calculator>button {
     cursor          : pointer;
@@ -51,29 +53,36 @@ body {
     background-color: #ebebeb;
     color           : #414142;
 }
+
 .calculator>button:hover {
     background-color: #414142;
     color           : #ebebeb;
     border          : 1px solid #414142;
 }
-.clearBtn:hover{
+
+.clear-btn:hover {
     background-color: #b82f2f !important;
-    border: 1px solid #b82f2f !important;
+    border          : 1px solid #b82f2f !important;
 }
-.deleteBtn:hover{
+
+.delete-btn:hover {
     background-color: #d1921d !important;
-    border: 1px solid #d1921d !important;
+    border          : 1px solid #d1921d !important;
 }
-.equalsBtn:hover{
+
+.equals-btn:hover {
     background-color: #28832d !important;
-    border: 1px solid #28832d !important;
+    border          : 1px solid #28832d !important;
 }
+
 .span-two {
     grid-column: span 2;
 }
+
 .round-down-left {
     border-radius: 0 0 0 3px;
 }
+
 .round-down-right {
     border-radius: 0 0 3px 0;
 }
