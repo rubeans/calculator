@@ -6,7 +6,7 @@ const numberBtns = document.querySelectorAll('.number')
 const operatorsBtns = document.querySelectorAll('.operator')
 const equalsBtn = document.querySelector('.equals-btn')
 const displayers = document.querySelectorAll('.displayers')
-let currentOutput;
+let currentNumberOutput;
 
 // CREATE CALCULATOR OPERATORS
 function divide(n1, n2) {
@@ -27,15 +27,15 @@ function operate(operator, n1, n2) {
     return operator(n1, n2)
 }
 
-// POPULATE THE DISPLAY WHEN BUTTON IS CLICKED
-function populate() {
-    displayers.forEach(btn => btn.addEventListener('click', () => {
-        currentOutput = btn.value
+// POPULATE THE DISPLAY WHEN NUMBERS BUTTONS IS CLICKED
+function populateNumbers() {
+    numberBtns.forEach(btn => btn.addEventListener('click', () => {
+        currentNumberOutput = btn.value
         if(outputText.textContent == 'Made by Rubens'){
             outputText.textContent = ''
         }
         outputText.style.alignSelf = 'flex-end'
-        outputText.textContent += currentOutput
+        outputText.textContent += currentNumberOutput
     }))
 }
-populate()
+populateNumbers()
