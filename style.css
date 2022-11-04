@@ -42,6 +42,19 @@ body {
 .output .output-text {
     color    : #ebebeb;
     font-size: 2.5rem;
+    align-self: center;
+}
+
+.cr-link{
+    text-decoration: none;
+    background-color: #5c5c5c;
+    color    : #ebebeb;
+    padding: 5px;
+    border-radius: 3px;
+    box-shadow: 7px 5px 5px #b1b1b1;
+}
+.cr-link:hover{
+    padding: 7px;
 }
 
 /* BUTTONS */
@@ -63,11 +76,6 @@ body {
 .clear-btn:hover {
     background-color: #b82f2f !important;
     border          : 1px solid #b82f2f !important;
-}
-
-.delete-btn:hover {
-    background-color: #d1921d !important;
-    border          : 1px solid #d1921d !important;
 }
 
 .equals-btn:hover {

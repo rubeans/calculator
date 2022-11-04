@@ -26,13 +26,13 @@ function add(n1, n2) {
 function operate(operator, n1, n2) {
     return operator(n1, n2)
 }
-// console.log(operate(multiply, 10, 2))
 
 // POPULATE THE DISPLAY WHEN BUTTON IS CLICKED
 function populate() {
     displayers.forEach(btn => btn.addEventListener('click', () => {
         currentOutput = btn.value
-        outputText.innerHTML += currentOutput
+        outputText.style.alignSelf = 'flex-end'
+        outputText.textContent += currentOutput
     }))
 }
 populate()
