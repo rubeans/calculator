@@ -31,6 +31,9 @@ function operate(operator, n1, n2) {
 function populate() {
     displayers.forEach(btn => btn.addEventListener('click', () => {
         currentOutput = btn.value
+        if(outputText.textContent == 'Made by Rubens'){
+            outputText.textContent = ''
+        }
         outputText.style.alignSelf = 'flex-end'
         outputText.textContent += currentOutput
     }))
