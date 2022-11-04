@@ -1,28 +1,38 @@
+// DECLARE VARIABLES 
 const outputText = document.querySelector('.output-text')
 const clearBtn = document.querySelector('.clear-btn')
 const deleteBtn = document.querySelector('.delete-btn')
 const numberBtns = document.querySelectorAll('.number')
 const operatorsBtns = document.querySelectorAll('.operator')
 const equalsBtn = document.querySelector('.equals-btn')
+const displayers = document.querySelectorAll('.displayers')
+let currentOutput;
 
-class Calculator {
-    constructor(n1, n2) {
-        this.n1 = n1
-        this.n2 = n2
-    }
-    dividir() {
-        return `${this.n1}` / `${this.n2}`
-    }
-    multiplicar() {
-        return `${this.n1}` * `${this.n2}`
-    }
-    subtrair() {
-        return `${this.n1}` - `${this.n2}`
-    }
-    somar() {
-        return `${this.n1}` + `${this.n2}`
-    }
+// CREATE CALCULATOR OPERATORS
+function divide(n1, n2) {
+    return n1 / n2
+}
+function multiply(n1, n2) {
+    return n1 * n2
+}
+function subtract(n1, n2) {
+    return n1 - n2
+}
+function add(n1, n2) {
+    return n1 + n2
 }
 
-const calcular = new Calculator(10,5)
-console.log(calcular.somar())
+// TAKE THE OPERATOR AND 2 NUMBERS AND THEN CALLS ONE OF THE ABOVE FUNCTIONS ON THE NUMBERS
+function operate(operator, n1, n2) {
+    return operator(n1, n2)
+}
+// console.log(operate(multiply, 10, 2))
+
+// POPULATE THE DISPLAY WHEN BUTTON IS CLICKED
+function populate() {
+    displayers.forEach(btn => btn.addEventListener('click', () => {
+        currentOutput = btn.value
+        outputText.innerHTML += currentOutput
+    }))
+}
+populate()

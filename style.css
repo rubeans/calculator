@@ -79,10 +79,10 @@ body {
     grid-column: span 2;
 }
 
-.round-down-left {
+.round-bottom-left {
     border-radius: 0 0 0 3px;
 }
 
-.round-down-right {
+.round-bottom-right {
     border-radius: 0 0 3px 0;
 }
