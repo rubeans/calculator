@@ -1,4 +1,4 @@
-// DECLARE VARIABLES 
+// STATIC VARIABLES
 const outputText = document.querySelector('.output-text')
 const clearBtn = document.querySelector('.clear-btn')
 const deleteBtn = document.querySelector('.delete-btn')
@@ -6,7 +6,9 @@ const numberBtns = document.querySelectorAll('.number')
 const operatorsBtns = document.querySelectorAll('.operator')
 const equalsBtn = document.querySelector('.equals-btn')
 const displayers = document.querySelectorAll('.displayers')
+// FLEXIBLE VARIABLES
 let currentNumberOutput;
+let combinedNumbers;
 
 // CREATE CALCULATOR OPERATORS
 function divide(n1, n2) {
@@ -31,11 +33,19 @@ function operate(operator, n1, n2) {
 function populateNumbers() {
     numberBtns.forEach(btn => btn.addEventListener('click', () => {
         currentNumberOutput = btn.value
-        if(outputText.textContent == 'Made by Rubens'){
+        if (combinedNumbers == undefined) {
+            combinedNumbers = currentNumberOutput
+        } else {
+            combinedNumbers += currentNumberOutput
+        }
+        if (outputText.textContent == 'Made by Rubens') {
             outputText.textContent = ''
         }
+        outputText.style.fontSize = '2rem'
         outputText.style.alignSelf = 'flex-end'
         outputText.textContent += currentNumberOutput
+        console.log(currentNumberOutput)
+        console.log(combinedNumbers)
     }))
 }
 populateNumbers()

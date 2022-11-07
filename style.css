@@ -40,22 +40,23 @@ body {
 }
 
 .output .output-text {
-    color    : #ebebeb;
-    font-size: 2.5rem;
+    color     : #ebebeb;
+    font-size : 1.5rem;
     align-self: center;
 }
 
-.cr-link{
-    text-decoration: none;
+.cr-link {
+    text-decoration : none;
     background-color: #5c5c5c;
-    color    : #ebebeb;
-    padding: 5px;
-    border-radius: 3px;
-    box-shadow: 7px 5px 5px #b1b1b1;
+    color           : #ebebeb;
+    padding         : 5px;
+    border-radius   : 3px;
+    box-shadow      : 7px 5px 5px #b1b1b1;
 }
 
-.cr-link:hover{
-    padding: 7px;
+.cr-link:hover {
+    padding        : 7px;
+    text-decoration: underline;
 }
 
 /* BUTTONS */
