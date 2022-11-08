@@ -9,6 +9,7 @@ const displayers = document.querySelectorAll('.displayers')
 // FLEXIBLE VARIABLES
 let currentNumberOutput;
 let combinedNumbers;
+let currentOperatorOutput;
 
 // CREATE CALCULATOR OPERATORS
 function divide(n1, n2) {
@@ -29,8 +30,9 @@ function operate(operator, n1, n2) {
     return operator(n1, n2)
 }
 
-// POPULATE THE DISPLAY WHEN NUMBERS BUTTONS IS CLICKED
-function populateNumbers() {
+// POPULATE THE DISPLAY WHEN BUTTONS IS CLICKED
+function clicks() {
+    // HANDLE NUMBERS
     numberBtns.forEach(btn => btn.addEventListener('click', () => {
         currentNumberOutput = btn.value
         if (combinedNumbers == undefined) {
@@ -47,5 +49,17 @@ function populateNumbers() {
         console.log(currentNumberOutput)
         console.log(combinedNumbers)
     }))
+    // HANDLE OPERATORS
+    operatorsBtns.forEach(btn => btn.addEventListener('click', () => {
+        currentOperatorOutput = btn.value
+        if (combinedNumbers == undefined) {
+            outputText.innerHTML = '<span class="output-text">Made by <a class="cr-link" href="http://github.com/rubeans/calculator" target="_blank">Rubens</a></span>'
+        }
+        else {
+            outputText.textContent = combinedNumbers += currentOperatorOutput
+        }
+    }))
 }
-populateNumbers()
+clicks()
+
+// SHOW RESULT WHEN EQUALS BUTTON IS PRESSED
