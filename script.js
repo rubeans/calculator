@@ -40,19 +40,17 @@ function handleNumbers() {
             combinedNumbers = currentNumber
         } else {
             combinedNumbers += currentNumber
-        }
+        };
         if (outputText.textContent == 'Made by Rubens' || outputText.textContent.length == 0) {
             outputText.textContent = ''
-        }
+        };
         outputText.style.fontSize = '2rem'
         outputText.style.alignSelf = 'flex-end'
         outputText.textContent += currentNumber
-        console.log(currentNumber)
-        console.log(combinedNumbers)
-        firstNum = combinedNumbers
+        lastNum = combinedNumbers
+        console.log(lastNum)
     }))
 }
-handleNumbers()
 
 // POPULATE THE DISPLAY WHEN OPERATORS BUTTONS IS CLICKED
 function handleOperators() {
@@ -62,8 +60,9 @@ function handleOperators() {
             alert(`Sorry, you can not start with '${currentOperator}' operator.`)
         } else if (currentOperator == '-' && outputText.textContent == 'Made by Rubens') {
             outputText.style.alignSelf = 'flex-end'
-            outputText.textContent = '-'
+            outputText.textContent = currentOperator
         } else {
+            firstNum = combinedNumbers
             combinedNumbers = ''
             outputText.style.alignSelf = 'flex-end'
             outputText.textContent += currentOperator
@@ -72,4 +71,46 @@ function handleOperators() {
         }
     }))
 }
-handleOperators()
+function handleEquals() {
+    equalsBtn.addEventListener('click', () => {
+        getOperator(currentOperator)
+        outputText.textContent = operate(currentOperator, firstNum, lastNum)
+        console.log(outputText.textContent)
+    })
+}
+
+function getOperator(op) {
+    switch (op) {
+        case '÷':
+            currentOperator = divide
+            break;
+        case '×':
+            currentOperator = multiply
+            break;
+        case '-':
+            currentOperator = subtract
+            break;
+        case '+':
+            currentOperator = add
+            break;
+        default:
+            break;
+    }
+}
+
+// RUN THE FUNCTIONS WHEN THE PAGE LOADS
+window.onload = () => {
+    handleNumbers()
+    handleOperators()
+    handleEquals()
+}
+
+/* TODO
+    fix it to not let display more than one operator in a roll;
+
+    people should be able to string together several operations and get the right answer, with each pair of numbers being evaluated at a time. For example, 12 + 7 - 5 * 3 = should yield 42;
+
+    handle when the dot is clicked to start with a zero and then the dot itself. ex: 0.(number);
+    
+    add functions to handle the delete and clear button;
+*/
