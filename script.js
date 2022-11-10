@@ -7,9 +7,11 @@ const operatorsBtns = document.querySelectorAll('.operator')
 const equalsBtn = document.querySelector('.equals-btn')
 const displayers = document.querySelectorAll('.displayers')
 // FLEXIBLE VARIABLES
-let currentNumberOutput;
+let currentNumber;
 let combinedNumbers;
-let currentOperatorOutput;
+let currentOperator;
+let firstNum;
+let lastNum;
 
 // CREATE CALCULATOR OPERATORS
 function divide(n1, n2) {
@@ -30,36 +32,44 @@ function operate(operator, n1, n2) {
     return operator(n1, n2)
 }
 
-// POPULATE THE DISPLAY WHEN BUTTONS IS CLICKED
-function clicks() {
-    // HANDLE NUMBERS
+// POPULATE THE DISPLAY WHEN NUMBER BUTTONS IS CLICKED
+function handleNumbers() {
     numberBtns.forEach(btn => btn.addEventListener('click', () => {
-        currentNumberOutput = btn.value
+        currentNumber = btn.value
         if (combinedNumbers == undefined) {
-            combinedNumbers = currentNumberOutput
+            combinedNumbers = currentNumber
         } else {
-            combinedNumbers += currentNumberOutput
+            combinedNumbers += currentNumber
         }
-        if (outputText.textContent == 'Made by Rubens') {
+        if (outputText.textContent == 'Made by Rubens' || outputText.textContent.length == 0) {
             outputText.textContent = ''
         }
         outputText.style.fontSize = '2rem'
         outputText.style.alignSelf = 'flex-end'
-        outputText.textContent += currentNumberOutput
-        console.log(currentNumberOutput)
+        outputText.textContent += currentNumber
+        console.log(currentNumber)
         console.log(combinedNumbers)
+        firstNum = combinedNumbers
     }))
-    // HANDLE OPERATORS
+}
+handleNumbers()
+
+// POPULATE THE DISPLAY WHEN OPERATORS BUTTONS IS CLICKED
+function handleOperators() {
     operatorsBtns.forEach(btn => btn.addEventListener('click', () => {
-        currentOperatorOutput = btn.value
-        if (combinedNumbers == undefined) {
-            outputText.innerHTML = '<span class="output-text">Made by <a class="cr-link" href="http://github.com/rubeans/calculator" target="_blank">Rubens</a></span>'
-        }
-        else {
-            outputText.textContent = combinedNumbers += currentOperatorOutput
+        currentOperator = btn.value
+        if (currentOperator != '-' && outputText.textContent == 'Made by Rubens') {
+            alert(`Sorry, you can not start with '${currentOperator}' operator.`)
+        } else if (currentOperator == '-' && outputText.textContent == 'Made by Rubens') {
+            outputText.style.alignSelf = 'flex-end'
+            outputText.textContent = '-'
+        } else {
+            combinedNumbers = ''
+            outputText.style.alignSelf = 'flex-end'
+            outputText.textContent += currentOperator
+            console.log(currentOperator)
+            console.log(combinedNumbers)
         }
     }))
 }
-clicks()
-
-// SHOW RESULT WHEN EQUALS BUTTON IS PRESSED
+handleOperators()
