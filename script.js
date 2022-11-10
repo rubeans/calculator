@@ -106,11 +106,13 @@ window.onload = () => {
 }
 
 /* TODO
+    fix the bug of the add operator, instead of append side by side do the sum between the numbers;
+
     fix it to not let display more than one operator in a roll;
 
     people should be able to string together several operations and get the right answer, with each pair of numbers being evaluated at a time. For example, 12 + 7 - 5 * 3 = should yield 42;
 
     handle when the dot is clicked to start with a zero and then the dot itself. ex: 0.(number);
-    
+
     add functions to handle the delete and clear button;
 */
