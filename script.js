@@ -8,12 +8,12 @@ const equalsBtn = document.querySelector('.equals-btn')
 const displayers = document.querySelectorAll('.displayers')
 // FLEXIBLE VARIABLES
 let currentNumber;
-let combinedNumbers;
 let currentOperator;
+let combinedValue;
 let prevNum;
 let lastNum;
 
-// CREATE CALCULATOR OPERATORS
+// OPERATORS
 function divide(n1, n2) {
     return n1 / n2
 }
@@ -38,19 +38,19 @@ function operate(operator, n1, n2) {
 function handleNumbers() {
     numberBtns.forEach(btn => btn.addEventListener('click', () => {
         currentNumber = btn.value
-        if (combinedNumbers == undefined) {
-            combinedNumbers = currentNumber
+        if (combinedValue == undefined) {
+            combinedValue = currentNumber
         } else {
-            combinedNumbers += currentNumber
+            combinedValue += currentNumber
         }; if (outputText.textContent == 'Made by Rubens' || outputText.textContent.length == 0) {
             outputText.textContent = ''
         } else if (outputText.textContent == '-') {
-            combinedNumbers = currentOperator += currentNumber
+            combinedValue = currentOperator += currentNumber
         };
         outputText.style.fontSize = '2rem'
         outputText.style.alignSelf = 'flex-end'
         outputText.textContent += currentNumber
-        lastNum = combinedNumbers
+        lastNum = combinedValue
         console.log(lastNum)
     }))
 }
@@ -65,12 +65,12 @@ function handleOperators() {
             outputText.style.alignSelf = 'flex-end'
             outputText.textContent = currentOperator
         } else {
-            prevNum = combinedNumbers
-            combinedNumbers = ''
+            prevNum = combinedValue
+            combinedValue = ''
             outputText.style.alignSelf = 'flex-end'
             outputText.textContent += currentOperator
             console.log(currentOperator)
-            console.log(combinedNumbers)
+            console.log(combinedValue)
         }
     }))
 }
