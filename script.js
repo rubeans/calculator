@@ -10,7 +10,7 @@ const displayers = document.querySelectorAll('.displayers')
 let currentNumber;
 let combinedNumbers;
 let currentOperator;
-let firstNum;
+let prevNum;
 let lastNum;
 
 // CREATE CALCULATOR OPERATORS
@@ -29,10 +29,12 @@ function add(n1, n2) {
 
 // TAKE THE OPERATOR AND 2 NUMBERS AND THEN CALLS ONE OF THE ABOVE FUNCTIONS ON THE NUMBERS
 function operate(operator, n1, n2) {
-    return operator(n1, n2)
+    const a = Number(n1)
+    const b = Number(n2)
+    return operator(a, b)
 }
 
-// POPULATE THE DISPLAY WHEN NUMBER BUTTONS IS CLICKED
+// WHEN NUMBER BUTTONS IS CLICKED
 function handleNumbers() {
     numberBtns.forEach(btn => btn.addEventListener('click', () => {
         currentNumber = btn.value
@@ -40,9 +42,10 @@ function handleNumbers() {
             combinedNumbers = currentNumber
         } else {
             combinedNumbers += currentNumber
-        };
-        if (outputText.textContent == 'Made by Rubens' || outputText.textContent.length == 0) {
+        }; if (outputText.textContent == 'Made by Rubens' || outputText.textContent.length == 0) {
             outputText.textContent = ''
+        } else if (outputText.textContent == '-') {
+            combinedNumbers = currentOperator += currentNumber
         };
         outputText.style.fontSize = '2rem'
         outputText.style.alignSelf = 'flex-end'
@@ -52,7 +55,7 @@ function handleNumbers() {
     }))
 }
 
-// POPULATE THE DISPLAY WHEN OPERATORS BUTTONS IS CLICKED
+// WHEN OPERATORS BUTTONS IS CLICKED
 function handleOperators() {
     operatorsBtns.forEach(btn => btn.addEventListener('click', () => {
         currentOperator = btn.value
@@ -62,7 +65,7 @@ function handleOperators() {
             outputText.style.alignSelf = 'flex-end'
             outputText.textContent = currentOperator
         } else {
-            firstNum = combinedNumbers
+            prevNum = combinedNumbers
             combinedNumbers = ''
             outputText.style.alignSelf = 'flex-end'
             outputText.textContent += currentOperator
@@ -71,14 +74,17 @@ function handleOperators() {
         }
     }))
 }
+
+// WHEN EQUALS IS PRESSED
 function handleEquals() {
     equalsBtn.addEventListener('click', () => {
         getOperator(currentOperator)
-        outputText.textContent = operate(currentOperator, firstNum, lastNum)
+        outputText.textContent = operate(currentOperator, prevNum, lastNum)
         console.log(outputText.textContent)
     })
 }
 
+// CONVERT OPERATORS SYMBOLS TO IT'S NAME
 function getOperator(op) {
     switch (op) {
         case '÷':
@@ -106,8 +112,6 @@ window.onload = () => {
 }
 
 /* TODO
-    fix the bug of the add operator, instead of append side by side do the sum between the numbers;
-
     fix it to not let display more than one operator in a roll;
 
     people should be able to string together several operations and get the right answer, with each pair of numbers being evaluated at a time. For example, 12 + 7 - 5 * 3 = should yield 42;
