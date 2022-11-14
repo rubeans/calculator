@@ -5,7 +5,6 @@ const deleteBtn = document.querySelector('.delete-btn')
 const numberBtns = document.querySelectorAll('.number')
 const operatorsBtns = document.querySelectorAll('.operator')
 const equalsBtn = document.querySelector('.equals-btn')
-const displayers = document.querySelectorAll('.displayers')
 // FLEXIBLE VARIABLES
 let currentNumber;
 let currentOperator;
