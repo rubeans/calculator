@@ -34,8 +34,22 @@ function operate(operator, n1, n2) {
     return operator(a, b)
 }
 
+// WHEN CLEAR BUTTON IS CLICKED
+function handleClearBtn() {
+    clearBtn.addEventListener('click', () => {
+        combinedValue = ''
+        currentOperator = ''
+        outputText.textContent = ''
+    })
+}
+
+// WHEN DELETE BUTTON IS CLICKED
+function handleDeleteBtn() {
+// TODO
+}
+
 // WHEN NUMBER BUTTONS IS CLICKED
-function handleNumbers() {
+function handleNumbersBtn() {
     numberBtns.forEach(btn => btn.addEventListener('click', () => {
         currentNumber = btn.value
         if (combinedValue == undefined) {
@@ -47,7 +61,7 @@ function handleNumbers() {
         } else if (outputText.textContent == '-') {
             combinedValue = currentOperator += currentNumber
         };
-        outputText.style.fontSize = '2rem'
+        outputText.style.fontSize = '2.5rem'
         outputText.style.alignSelf = 'flex-end'
         outputText.textContent += currentNumber
         lastNum = combinedValue
@@ -56,7 +70,7 @@ function handleNumbers() {
 }
 
 // WHEN OPERATORS BUTTONS IS CLICKED
-function handleOperators() {
+function handleOperatorsBtn() {
     operatorsBtns.forEach(btn => btn.addEventListener('click', () => {
         currentOperator = btn.value
         if (currentOperator != '-' && outputText.textContent == 'Made by Rubens') {
@@ -67,7 +81,6 @@ function handleOperators() {
         } else {
             prevNum = combinedValue
             combinedValue = ''
-            outputText.style.alignSelf = 'flex-end'
             outputText.textContent += currentOperator
             console.log(currentOperator)
             console.log(combinedValue)
@@ -76,7 +89,7 @@ function handleOperators() {
 }
 
 // WHEN EQUALS IS PRESSED
-function handleEquals() {
+function handleEqualsBtn() {
     equalsBtn.addEventListener('click', () => {
         getOperator(currentOperator)
         outputText.textContent = operate(currentOperator, prevNum, lastNum)
@@ -106,9 +119,10 @@ function getOperator(op) {
 
 // RUN THE FUNCTIONS WHEN THE PAGE LOADS
 window.onload = () => {
-    handleNumbers()
-    handleOperators()
-    handleEquals()
+    handleClearBtn()
+    handleNumbersBtn()
+    handleOperatorsBtn()
+    handleEqualsBtn()
 }
 
 /* TODO
@@ -116,7 +130,7 @@ window.onload = () => {
 
     people should be able to string together several operations and get the right answer, with each pair of numbers being evaluated at a time. For example, 12 + 7 - 5 * 3 = should yield 42;
 
-    handle when the dot is clicked to start with a zero and then the dot itself. ex: 0.(number);
+    handle when the dot is clicked to start with a zero and then the dot itself. ex: 0.;
 
     add functions to handle the delete and clear button;
 */
