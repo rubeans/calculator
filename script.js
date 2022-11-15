@@ -7,7 +7,7 @@ const operatorsBtns = document.querySelectorAll('.operator')
 const equalsBtn = document.querySelector('.equals-btn')
 // FLEXIBLE VARIABLES
 let currentNumber;
-let currentOperator;
+let operator;
 let combinedValue;
 let prevNum;
 let lastNum;
@@ -27,18 +27,22 @@ function add(n1, n2) {
 }
 
 // TAKE THE OPERATOR AND 2 NUMBERS AND THEN CALLS ONE OF THE ABOVE FUNCTIONS ON THE NUMBERS
-function operate(operator, n1, n2) {
+function operate(op, n1, n2) {
     const a = Number(n1)
     const b = Number(n2)
-    return operator(a, b)
+    return op(a, b)
 }
 
 // WHEN CLEAR BUTTON IS CLICKED
 function handleClearBtn() {
     clearBtn.addEventListener('click', () => {
-        combinedValue = ''
-        currentOperator = ''
-        output.textContent = ''
+        if (output.textContent != 'Made by Rubens') {
+            combinedValue = ''
+            operator = ''
+            output.textContent = ''
+        } else {
+            console.warn('Can not clear the dev name.')
+        }
     })
 }
 
@@ -46,9 +50,7 @@ function handleClearBtn() {
 function handleDeleteBtn() {
     // TODO
     deleteBtn.addEventListener('click', () => {
-        if (output.textContent != 'Made by Rubens') {
-            output.textContent = output.textContent.slice(0, output.textContent.length - 1)
-        }
+        output.textContent != 'Made by Rubens' ? output.textContent = output.textContent.slice(0, output.textContent.length - 1) : console.warn('Can not delete the dev name.')
     })
 }
 
@@ -60,7 +62,7 @@ function handleNumbersBtn() {
         if (output.textContent == 'Made by Rubens' || output.textContent.length == 0) {
             output.textContent = ''
         } else if (output.textContent == '-') {
-            combinedValue = currentOperator += currentNumber
+            combinedValue = operator += currentNumber
         };
         output.style.fontSize = '2.5rem'
         output.style.alignSelf = 'flex-end'
@@ -73,27 +75,27 @@ function handleNumbersBtn() {
 // WHEN OPERATORS BUTTONS IS CLICKED
 function handleOperatorsBtn() {
     operatorsBtns.forEach(btn => btn.addEventListener('click', () => {
-        currentOperator = btn.value
-        if (currentOperator != '-' && output.textContent == 'Made by Rubens') {
-            alert(`Sorry, you can not start with '${currentOperator}' operator.`)
-        } else if (currentOperator == '-' && output.textContent == 'Made by Rubens') {
+        operator = btn.value
+        if (operator != '-' && output.textContent == 'Made by Rubens') {
+            alert(`Sorry, you can not start with '${operator}' operator.`)
+        } else if (operator == '-' && output.textContent == 'Made by Rubens') {
             output.style.alignSelf = 'flex-end'
-            output.textContent = currentOperator
+            output.textContent = operator
         } else {
             prevNum = combinedValue
             combinedValue = ''
-            output.textContent += currentOperator
-            console.log(currentOperator)
+            output.textContent += operator
+            console.log(operator)
             console.log(combinedValue)
         }
     }))
 }
 
-// WHEN EQUALS IS PRESSED
+// WHEN EQUALS BUTTON IS PRESSED
 function handleEqualsBtn() {
     equalsBtn.addEventListener('click', () => {
-        getOperator(currentOperator)
-        combinedValue = operate(currentOperator, prevNum, lastNum)
+        getOperator(operator)
+        combinedValue = operate(operator, prevNum, lastNum)
         output.textContent = combinedValue
         console.log(combinedValue)
     })
@@ -103,16 +105,16 @@ function handleEqualsBtn() {
 function getOperator(op) {
     switch (op) {
         case '÷':
-            currentOperator = divide
+            operator = divide
             break;
         case '×':
-            currentOperator = multiply
+            operator = multiply
             break;
         case '-':
-            currentOperator = subtract
+            operator = subtract
             break;
         case '+':
-            currentOperator = add
+            operator = add
             break;
         default:
             break;
@@ -132,8 +134,6 @@ window.onload = () => {
     fix it to not let display more than one operator in a roll;
 
     people should be able to string together several operations and get the right answer, with each pair of numbers being evaluated at a time. For example, 12 + 7 - 5 * 3 = should yield 42;
-
-    handle when the dot is clicked to start with a zero and then the dot itself. ex: 0.;
 
     add functions to handle the delete and clear button;
 */
