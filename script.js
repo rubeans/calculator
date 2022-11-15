@@ -44,7 +44,12 @@ function handleClearBtn() {
 
 // WHEN DELETE BUTTON IS CLICKED
 function handleDeleteBtn() {
-// TODO
+    // TODO
+    deleteBtn.addEventListener('click', () => {
+        if (outputText.textContent != 'Made by Rubens') {
+            outputText.textContent = outputText.textContent.slice(0, outputText.textContent.length - 1)
+        }
+    })
 }
 
 // WHEN NUMBER BUTTONS IS CLICKED
@@ -119,6 +124,7 @@ function getOperator(op) {
 // RUN THE FUNCTIONS WHEN THE PAGE LOADS
 window.onload = () => {
     handleClearBtn()
+    handleDeleteBtn()
     handleNumbersBtn()
     handleOperatorsBtn()
     handleEqualsBtn()
