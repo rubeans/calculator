@@ -1,5 +1,5 @@
 // STATIC VARIABLES
-const outputText = document.querySelector('.output-text')
+const output = document.querySelector('.output-text')
 const clearBtn = document.querySelector('.clear-btn')
 const deleteBtn = document.querySelector('.delete-btn')
 const numberBtns = document.querySelectorAll('.number')
@@ -38,7 +38,7 @@ function handleClearBtn() {
     clearBtn.addEventListener('click', () => {
         combinedValue = ''
         currentOperator = ''
-        outputText.textContent = ''
+        output.textContent = ''
     })
 }
 
@@ -46,8 +46,8 @@ function handleClearBtn() {
 function handleDeleteBtn() {
     // TODO
     deleteBtn.addEventListener('click', () => {
-        if (outputText.textContent != 'Made by Rubens') {
-            outputText.textContent = outputText.textContent.slice(0, outputText.textContent.length - 1)
+        if (output.textContent != 'Made by Rubens') {
+            output.textContent = output.textContent.slice(0, output.textContent.length - 1)
         }
     })
 }
@@ -56,18 +56,15 @@ function handleDeleteBtn() {
 function handleNumbersBtn() {
     numberBtns.forEach(btn => btn.addEventListener('click', () => {
         currentNumber = btn.value
-        if (combinedValue == undefined) {
-            combinedValue = currentNumber
-        } else {
-            combinedValue += currentNumber
-        }; if (outputText.textContent == 'Made by Rubens' || outputText.textContent.length == 0) {
-            outputText.textContent = ''
-        } else if (outputText.textContent == '-') {
+        combinedValue == undefined ? combinedValue = currentNumber : combinedValue += currentNumber;
+        if (output.textContent == 'Made by Rubens' || output.textContent.length == 0) {
+            output.textContent = ''
+        } else if (output.textContent == '-') {
             combinedValue = currentOperator += currentNumber
         };
-        outputText.style.fontSize = '2.5rem'
-        outputText.style.alignSelf = 'flex-end'
-        outputText.textContent += currentNumber
+        output.style.fontSize = '2.5rem'
+        output.style.alignSelf = 'flex-end'
+        output.textContent += currentNumber
         lastNum = combinedValue
         console.log(lastNum)
     }))
@@ -77,15 +74,15 @@ function handleNumbersBtn() {
 function handleOperatorsBtn() {
     operatorsBtns.forEach(btn => btn.addEventListener('click', () => {
         currentOperator = btn.value
-        if (currentOperator != '-' && outputText.textContent == 'Made by Rubens') {
+        if (currentOperator != '-' && output.textContent == 'Made by Rubens') {
             alert(`Sorry, you can not start with '${currentOperator}' operator.`)
-        } else if (currentOperator == '-' && outputText.textContent == 'Made by Rubens') {
-            outputText.style.alignSelf = 'flex-end'
-            outputText.textContent = currentOperator
+        } else if (currentOperator == '-' && output.textContent == 'Made by Rubens') {
+            output.style.alignSelf = 'flex-end'
+            output.textContent = currentOperator
         } else {
             prevNum = combinedValue
             combinedValue = ''
-            outputText.textContent += currentOperator
+            output.textContent += currentOperator
             console.log(currentOperator)
             console.log(combinedValue)
         }
@@ -96,8 +93,9 @@ function handleOperatorsBtn() {
 function handleEqualsBtn() {
     equalsBtn.addEventListener('click', () => {
         getOperator(currentOperator)
-        outputText.textContent = operate(currentOperator, prevNum, lastNum)
-        console.log(outputText.textContent)
+        combinedValue = operate(currentOperator, prevNum, lastNum)
+        output.textContent = combinedValue
+        console.log(combinedValue)
     })
 }
 
