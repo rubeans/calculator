@@ -8,6 +8,7 @@ const equalsBtn = document.querySelector('.equals-btn')
 // FLEXIBLE VARIABLES
 let currentNumber;
 let operator;
+let prevOp;
 let combinedValue;
 let prevNum;
 let lastNum;
@@ -37,9 +38,12 @@ function operate(op, n1, n2) {
 function handleClearBtn() {
     clearBtn.addEventListener('click', () => {
         if (output.textContent != 'Made by Rubens') {
+            output.style.alignSelf = 'center'
+            output.style.fontSize = '1.5rem'
             combinedValue = ''
             operator = ''
             output.textContent = ''
+            output.innerHTML = '<span class="output-text">Made by <a class="cr-link" href="http://github.com/rubeans/calculator" target="_blank">Rubens</a></span>'
         } else {
             console.warn('Can not clear the dev name.')
         }
@@ -68,26 +72,29 @@ function handleNumbersBtn() {
         output.style.alignSelf = 'flex-end'
         output.textContent += currentNumber
         lastNum = combinedValue
-        console.log(lastNum)
     }))
 }
 
-// WHEN OPERATORS BUTTONS IS CLICKED
+// WHEN OPERATOR BUTTONS IS CLICKED
 function handleOperatorsBtn() {
     operatorsBtns.forEach(btn => btn.addEventListener('click', () => {
         operator = btn.value
         if (operator != '-' && output.textContent == 'Made by Rubens') {
             alert(`Sorry, you can not start with '${operator}' operator.`)
+            return;
         } else if (operator == '-' && output.textContent == 'Made by Rubens') {
             output.style.alignSelf = 'flex-end'
             output.textContent = operator
-        } else {
-            prevNum = combinedValue
-            combinedValue = ''
-            output.textContent += operator
-            console.log(operator)
-            console.log(combinedValue)
+            return;
+        } else if (output.textContent.includes(prevOp)) {
+            getPrevOp(prevOp)
+            combinedValue = operate(prevOp, prevNum, lastNum)
+            output.textContent = combinedValue
         }
+        prevNum = combinedValue
+        combinedValue = ''
+        output.textContent += operator
+        prevOp = operator
     }))
 }
 
@@ -97,7 +104,6 @@ function handleEqualsBtn() {
         getOperator(operator)
         combinedValue = operate(operator, prevNum, lastNum)
         output.textContent = combinedValue
-        console.log(combinedValue)
     })
 }
 
@@ -116,7 +122,23 @@ function getOperator(op) {
         case '+':
             operator = add
             break;
-        default:
+    }
+}
+
+// CONVERT PREVIOUS OPERATORS SYMBOLS TO IT'S NAME
+function getPrevOp(op) {
+    switch (op) {
+        case '÷':
+            prevOp = divide
+            break;
+        case '×':
+            prevOp = multiply
+            break;
+        case '-':
+            prevOp = subtract
+            break;
+        case '+':
+            prevOp = add
             break;
     }
 }
@@ -131,9 +153,7 @@ window.onload = () => {
 }
 
 /* TODO
-    fix it to not let display more than one operator in a roll;
-
-    people should be able to string together several operations and get the right answer, with each pair of numbers being evaluated at a time. For example, 12 + 7 - 5 * 3 = should yield 42;
-
-    add functions to handle the delete and clear button;
+    fix it to not let display more than one operator and dot in a roll;
+    fix delete button to actually delete an item not just the text;
+    handle floats numbers to just display 1 numbers after the dot;
 */
