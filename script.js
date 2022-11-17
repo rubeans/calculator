@@ -38,14 +38,11 @@ function operate(op, n1, n2) {
 function handleClearBtn() {
     clearBtn.addEventListener('click', () => {
         if (output.textContent != 'Made by Rubens') {
-            output.style.alignSelf = 'center'
-            output.style.fontSize = '1.5rem'
             combinedValue = ''
             operator = ''
             output.textContent = ''
-            output.innerHTML = '<span class="output-text">Made by <a class="cr-link" href="http://github.com/rubeans/calculator" target="_blank">Rubens</a></span>'
         } else {
-            console.warn('Can not clear the dev name.')
+            console.error('[ERROR] Not possible to clear the dev name.')
         }
     })
 }
@@ -54,7 +51,7 @@ function handleClearBtn() {
 function handleDeleteBtn() {
     // TODO
     deleteBtn.addEventListener('click', () => {
-        output.textContent != 'Made by Rubens' ? output.textContent = output.textContent.slice(0, output.textContent.length - 1) : console.warn('Can not delete the dev name.')
+        output.textContent != 'Made by Rubens' ? output.textContent = output.textContent.slice(0, output.textContent.length - 1) : console.error('[ERROR] Not possible to delete the dev name.')
     })
 }
 
@@ -79,8 +76,8 @@ function handleNumbersBtn() {
 function handleOperatorsBtn() {
     operatorsBtns.forEach(btn => btn.addEventListener('click', () => {
         operator = btn.value
-        if (operator != '-' && output.textContent == 'Made by Rubens') {
-            alert(`Sorry, you can not start with '${operator}' operator.`)
+        if (operator != '-' && output.textContent == 'Made by Rubens' || output.textContent == '') {
+            console.error(`[ERROR] Not possible to start with '${operator}' operator.`)
             return;
         } else if (operator == '-' && output.textContent == 'Made by Rubens') {
             output.style.alignSelf = 'flex-end'
