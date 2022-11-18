@@ -109,6 +109,10 @@ function handleOperatorBtns() {
             getPrevOp(prevOperator)
             combinedValue = operate(prevOperator, prevNum, lastNum)
             output.textContent = combinedValue
+            // handle float numbers
+            if (output.textContent.includes('.')) {
+                output.textContent = combinedValue.toFixed(1)
+            }
         }
         prevNum = combinedValue
         combinedValue = ''
@@ -123,6 +127,10 @@ function handleEqualsBtn() {
         getCurrentOp(currentOperator)
         combinedValue = operate(currentOperator, prevNum, lastNum)
         output.textContent = combinedValue
+        // handle float numbers
+        if (output.textContent.includes('.')) {
+            output.textContent = combinedValue.toFixed(1)
+        }
     })
 }
 
