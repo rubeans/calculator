@@ -81,10 +81,6 @@ function handleNumberBtns() {
             output.textContent = ''
         } else if (output.textContent == '-') {
             combinedValue = currentOperator += currentNumber
-        } else if(currentNumber == '.'){
-            if(output.textContent.includes('.')){
-                return
-            }
         }
         output.style.fontSize = '2.5rem'
         output.style.alignSelf = 'flex-end'
