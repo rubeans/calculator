@@ -182,9 +182,3 @@ window.onload = () => {
     handleOperatorBtns()
     handleEqualsBtn()
 }
-
-/* TODO
-    fix it to not let display more than a dot in a roll;
-    fix delete button to actually delete an item not just the text;
-    handle floats numbers to just display 1 numbers after the dot;
-*/
