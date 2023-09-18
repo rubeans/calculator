@@ -103,8 +103,9 @@ function handleOperatorBtns() {
         } else if (output.textContent.includes(prevOperator)) {
             // change the operator in the middle of the operation
             if (currentOperator === prevOperator && currentOperator === output.textContent.slice(-1) || prevOperator === output.textContent.slice(-1)) {
+                currentOperator = prevOperator
                 alert('Changing the operator in the middle of the operation can also change the final value. I suggest deleting the current operator and select the one that you want.')
-                return
+                return;
             }
             getPrevOp(prevOperator)
             combinedValue = operate(prevOperator, prevNum, lastNum)

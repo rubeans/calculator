@@ -75,13 +75,18 @@ body {
 }
 
 .clear-btn:hover {
-    background-color: #b82f2f !important;
-    border          : 1px solid #b82f2f !important;
+    background-color: #b11414 !important;
+    border          : 1px solid #b11414 !important;
+}
+
+.delete-btn:hover{
+    background-color: #cc7f0b !important;
+    border          : 1px solid #cc7f0b !important;
 }
 
 .equals-btn:hover {
-    background-color: #28832d !important;
-    border          : 1px solid #28832d !important;
+    background-color: #256321 !important;
+    border          : 1px solid #256321 !important;
 }
 
 .span-two {
