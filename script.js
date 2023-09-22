@@ -57,17 +57,6 @@ function handleDeleteBtn() {
             output.textContent = combinedValue.slice(0, combinedValue.length - 1)
             combinedValue = output.textContent;
             console.log(combinedValue)
-            // check if contains operator
-            if (combinedValue.includes(prevOperator)) {
-                // TODO
-                console.log('inclui op')
-                combinedValue = output.textContent.slice(-1)
-                if (combinedValue === prevOperator) {
-                    // TODO
-                    console.log('ta no op')
-                    combinedValue = output.textContent.slice(0, -1)
-                }
-            }
         }
     })
 }
@@ -103,8 +92,8 @@ function handleOperatorBtns() {
         } else if (output.textContent.includes(prevOperator)) {
             // change the operator in the middle of the operation
             if (currentOperator === prevOperator && currentOperator === output.textContent.slice(-1) || prevOperator === output.textContent.slice(-1)) {
-                currentOperator = prevOperator
-                alert('Changing the operator in the middle of the operation can also change the final value. I suggest deleting the current operator and select the one that you want.')
+                //TODO CORRIGIR OPERADORES DE SE DUPLICAR
+                output.textContent = output.textContent.slice(0, -1) + currentOperator
                 return;
             }
             getPrevOp(prevOperator)
